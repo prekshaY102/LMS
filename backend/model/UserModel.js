@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//create user schema
 const userSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -25,12 +26,26 @@ const userSchema = new mongoose.Schema({
         type:String,
         default:""
     },
+    // Reference to enrolled courses
     enrollCourses:[{
         type:mongoose.Schema.Types.ObjectId,
         ref: "Course"
-    }]
+    }],
+    resetOtp:{
+        type:String
+    },
+    otpExpires:{
+        type:Date
+    },
+    isOtpVerified:{
+        type:Boolean,
+        default:false
+    }
+
+    
 },{timestamp:true})
 
+//create user model
 const User = mongoose.model("User", userSchema)
 
 export default(User)
