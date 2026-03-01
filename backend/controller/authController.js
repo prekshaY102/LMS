@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs'
 import genToken from "../config/token.js"
 import sendMail from "../config/sendMail.js"
 
-//  SIGNUP 
+// SIGNUP 
 export const signUp = async (req,res) => {
     try {
         // Get user data from request body
@@ -51,7 +51,7 @@ export const signUp = async (req,res) => {
     }
 }
 
-//  LOGIN 
+// LOGIN
 export const login = async (req, res) => {
     try {
         // Get login data
@@ -96,7 +96,7 @@ export const logOut = async (req, res) => {
 }
 
 
-// SEND OTP
+//  SEND OTP 
 export const sendOTP = async (req,res)=>{
     try {
         // Get email from request body
@@ -128,7 +128,7 @@ export const sendOTP = async (req,res)=>{
 }
 
 
-//VERIFY OTP
+//  VERIFY OTP 
 export const verifyOTP = async (req,res) => {
     try {
          // Extract email and OTP from request body
@@ -152,7 +152,7 @@ export const verifyOTP = async (req,res) => {
 }
 
 
-//  RESET PASSWORD 
+// RESET PASSWORD 
 export const resetPassword = async (req, res) => {
     try {
         // Get email and new password
