@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
         default:""
     },
     // Reference to enrolled courses
-    enrollCourses:[{
+    enrolledCourses:[{
         type:mongoose.Schema.Types.ObjectId,
         ref: "Course"
     }],
