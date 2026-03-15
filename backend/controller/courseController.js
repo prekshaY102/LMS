@@ -31,7 +31,7 @@ export const getPublishedCourses = async (req,res) => {
     try {
 
         // Find all courses where isPublished = true
-        const courses = await Course.find({isPublished:true})
+        const courses = await Course.find({isPublished:true}).populate("lectures reviews")
         if(!courses){
             return res.status(400).json({message:"No published courses found"})
         }
@@ -139,7 +139,7 @@ export const createLecture = async (req,res) => {
         const {courseId} = req.params
 
         // Validate lecture title
-        if(lectureTitle || courseId){
+        if(!lectureTitle || !courseId){
             return res.status(400).json({message:"lectureTitle is required"})
         }
 
@@ -230,5 +230,22 @@ export const removeLecture = async (req,res) =>{
         return res.status(200).json({message:"Lecture removed"})
     } catch (error) {
         return res.status(500).json({message:`Error removing lecture ${error}`})
+    }
+}
+
+
+
+// get creator 
+
+export const getCreatorById = async (req,res) => {
+    try {
+        const {userId} = req.body
+        const user = await User.findById(userId).select("-password")
+        if(!user){
+            return res.status(404).json({message:"User not found"})
+        }
+        return res.status(200).json(user)
+    } catch (error) {
+        return res.status(500).json({message:`Error getting creator ${error}`})
     }
 }
